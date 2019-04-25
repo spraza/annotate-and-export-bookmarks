@@ -10,7 +10,7 @@ For safari, I read [this](http://amitp.blogspot.com/2014/05/extracting-safaris-r
 
 Second step was to **blend or combine all browser bookmarks** into a single json file. 
 
-Once that's done, the third step is that I **annotate that bookmarks file automatically** by adding hashtags for each bookmark. The way it works is that the python program automatically opens every bookmark, and then asks for hashtags, which I can enter. The program then updates the file, and does the same for the rest of the bookmarks. There are certain features here and there e.g. everytime you enter hashtags, you can see previous hashtags, so you can reuse them (by their indexed number that's also displayed). You can also leave the bookmarks as blank. 
+Once that's done, the third step is that I **annotate that bookmarks file automatically** by adding hashtags for each bookmark. The way it works is that the python program automatically opens every bookmark in a browser, and then asks for hashtags, which I can enter. The program then updates the file, and then repeats the same thing for the rest of the bookmarks. There are certain features here and there e.g. everytime you enter hashtags, you can see previous hashtags, so you can reuse them (by their indexed number that's also displayed). You can also leave the bookmarks as blank. 
 
 The second and third step are done by `tag_bookmarks.py`.
 
