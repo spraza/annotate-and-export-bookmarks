@@ -16,6 +16,7 @@ def populate_safari(map, results):
         temp_map["url"] = map[url_field]
         temp_map["hashtags"] = list()
         temp_map["browser"] = "safari"
+        temp_map["ignore"] = False
         results["data"].append(temp_map)
     for key in map.keys():
         val = map[key]
@@ -39,6 +40,7 @@ def populate_firefox(map, results):
         temp_map["url"] = map[url_field]
         temp_map["hashtags"] = list()
         temp_map["browser"] = "firefox"
+        temp_map["ignore"] = False
         results["data"].append(temp_map)
     for key in map.keys():
         val = map[key]
@@ -72,7 +74,7 @@ def fill_hashtags(candidate_file_name, browser):
     candidates = json.load(open(candidate_file_name))
     all_hashtags = candidates["all_hashtags"]
     for rec in candidates["data"]:
-        if not rec["hashtags"]:
+        if not rec["hashtags"] and not rec["ignore"]:
             browser.open_new_tab(rec["url"])
             for i in range(len(all_hashtags)):
                 print(str(i) + ": " + all_hashtags[i])
@@ -86,7 +88,9 @@ def fill_hashtags(candidate_file_name, browser):
                     else:
                         all_hashtags.append(hashtags[i])            
                 rec["hashtags"] = hashtags
-                json.dump(candidates, open(candidate_file_name, 'w'), indent=True)
+            else:
+                rec["ignore"] = True
+            json.dump(candidates, open(candidate_file_name, 'w'), indent=True)
 
 # Main
 candidate_file_name = "annotated-bookmark-candidates.json"

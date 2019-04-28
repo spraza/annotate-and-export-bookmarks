@@ -3,10 +3,11 @@ import json
 def populate_rev_index(map, rev_index):
     data = map["data"]
     for rec in data:
-        for hashtag in rec["hashtags"]:
-            if hashtag not in rev_index:
-                rev_index[hashtag] = list()
-            rev_index[hashtag].append(rec)
+        if not rec["ignore"]:
+            for hashtag in rec["hashtags"]:
+                if hashtag not in rev_index:
+                    rev_index[hashtag] = list()
+                rev_index[hashtag].append(rec)
 
 def dump_rec(rev_index, out_file):
     f = open(out_file, 'w')
